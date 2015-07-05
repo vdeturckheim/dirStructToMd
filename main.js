@@ -104,6 +104,6 @@ var mdIze = function(str){
   return result;
 };
 
-fs.writeFileSync(outputFile, mdIze(parse(root0)));
+fs.writeFileSync(outputFile, parse(root0));
 
 
