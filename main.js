@@ -10,7 +10,7 @@
  * from the array.
  * @returns {boolean} true if at least one element is present in the array equals to the one to find according to the
  * compare function.
- * @author Vladimir de Turckheim
+ * @author vdeturckheim
  */
 Array.prototype.contains = function ( item , cpf ) {
   if ( ! cpf ) {
@@ -23,16 +23,44 @@ Array.prototype.contains = function ( item , cpf ) {
   } );
 };
 
-
+var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
 
-if (!process.argv[2]) {
-  console.info('NOP');
-  return 0;
+var outputFile = 'dirStruct.md';
+
+
+function printHelp(){
+  console.log('Usage:\tdirStructToMd [options] <root>');
+  console.log('Options:');
+  console.log('  -c,\t--config \t<file>\t Configuration JSON file.');
+  console.log('  -o,\t--output \t<file>\t Output file, default value is \'dirStruct.md\'.');
+
+  process.exit();
+}
+
+var root0;
+
+if (!argv._[0]) { //todo use optimist to properly parse input arguments
+  printHelp();
+  process.exit();
+}else if(argv._[0].slice(-1)=='/'){
+  root0 = argv._[0].slice(0,-1);
+}else{
+  root0 = argv._[0];
+}
+
+if(argv.c || argv.config){
+  var confFile = argv.c || argv.config;
+  //TODO
+}
+
+if(argv.o || argv.output){
+  var outputFile = argv.o || argv.output;
 }
 
 
-var root0 = process.argv[2];
+
+
 var excludeList = ['.git', 'node_modules', '.idea'];
 
 var parse = function(root, prefix){
@@ -69,6 +97,6 @@ var mdIze = function(str){
   return result;
 };
 
-fs.writeFileSync('./test/tmp.md', mdIze(parse(root0)));
+fs.writeFileSync(outputFile, mdIze(parse(root0)));
 
 

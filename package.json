@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/vdeturckheim/dirStructToMd/issues"
   },
-  "homepage": "https://github.com/vdeturckheim/dirStructToMd"
+  "homepage": "https://github.com/vdeturckheim/dirStructToMd",
+  "dependencies": {
+    "minimist": "^1.1.1"
+  }
 }
