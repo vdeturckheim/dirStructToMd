@@ -83,7 +83,7 @@ var parse = function(root, prefix){
   rootContent.forEach(function(file){
     var path = root+'/'+file;
     if(!excludeList.contains(file)) {
-      md += prefix + "+-- _[" + file + "](" + path + ")\n";
+      md += prefix + "+-- _[`" + file + "`](" + path + ")\n";
 
       if ( fs.lstatSync ( path ).isDirectory ()) {
 
@@ -104,6 +104,6 @@ var mdIze = function(str){
   return result;
 };
 
-fs.writeFileSync(outputFile, parse(root0));
+fs.writeFileSync(outputFile, mdIze(parse(root0)));
 
 
