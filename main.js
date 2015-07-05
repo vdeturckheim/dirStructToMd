@@ -34,11 +34,14 @@ function printHelp(){
   console.log('Options:');
   console.log('  -c,\t--config \t<file>\t Configuration JSON file.');
   console.log('  -o,\t--output \t<file>\t Output file, default value is \'dirStruct.md\'.');
+  console.log('  -l,\t--link \t<file>\t Create link to the pages in tree structure.');
 
   process.exit();
 }
 
 var root0;
+
+var link = false;
 
 if (!argv._[0]) {
   printHelp();
@@ -56,6 +59,10 @@ if(argv.c || argv.config){
 
 if(argv.o || argv.output){
   var outputFile = argv.o || argv.output;
+}
+
+if(argv.l || argv.link){
+  link = true;
 }
 
 
@@ -76,7 +83,7 @@ var parse = function(root, prefix){
   rootContent.forEach(function(file){
     var path = root+'/'+file;
     if(!excludeList.contains(file)) {
-      md += prefix + "+-- _" + file + "\n";
+      md += prefix + "+-- _[" + file + "](" + path + ")\n";
 
       if ( fs.lstatSync ( path ).isDirectory ()) {
 
