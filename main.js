@@ -40,7 +40,7 @@ function printHelp(){
 
 var root0;
 
-if (!argv._[0]) { //todo use optimist to properly parse input arguments
+if (!argv._[0]) {
   printHelp();
   process.exit();
 }else if(argv._[0].slice(-1)=='/'){
