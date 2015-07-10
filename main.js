@@ -62,7 +62,7 @@ if(argv.o || argv.output){
 
 
 
-var excludeList = ['.git', 'node_modules', '.idea'];
+var excludeList = ['.git', 'node_modules', '.idea', 'bower_components'];
 
 var parse = function(root, prefix){
   var md;
